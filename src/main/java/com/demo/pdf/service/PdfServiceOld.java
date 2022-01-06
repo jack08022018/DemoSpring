@@ -8,7 +8,7 @@ import com.itextpdf.layout.Document;
 import com.itextpdf.layout.element.Div;
 import com.itextpdf.layout.element.Table;
 
-public class PdfService {
+public class PdfServiceOld {
     public static void addMetaData(PdfDocument pdfDoc) {
         PdfDocumentInfo documentInfo = pdfDoc.getDocumentInfo();
         documentInfo.setAuthor("Jack");
@@ -32,13 +32,13 @@ public class PdfService {
                 +        "</td>"
                 +    "</tr>"
                 +    "<tr>"
-                +        "<td style='" + tdCss + "' colspan='2'><b>Họ và tên Tư vấn viên:</b>"
+                +        "<td style='" + tdCss + "' colspan='2'>Họ và tên Tư vấn viên:"
                 +            "<div style='margin-top: 10px; font-weight: bold;'>PRUDENTIAL VIỆT NAM</div>"
                 +        "</td>"
-                +        "<td style='" + tdCss + "'><b>Mã số:</b>"
+                +        "<td style='" + tdCss + "'>Mã số:"
                 +            "<div style='margin-top: 10px; font-weight: bold;'>69101525</div>"
                 +        "</td>"
-                +        "<td style='" + tdCss + "'><b>Điện thoại liên lạc:</b>"
+                +        "<td style='" + tdCss + "'>Điện thoại liên lạc:"
                 +            "<div style='margin-top: 10px; font-weight: bold;'>0999999999</div>"
                 +        "</td>"
                 +    "</tr>"

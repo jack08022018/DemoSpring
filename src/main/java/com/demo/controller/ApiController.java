@@ -29,6 +29,13 @@ public class ApiController {
         return view;
     }
 
+    @GetMapping(value = "/index")
+    public ModelAndView index() {
+        ModelAndView view = new ModelAndView();
+        view.setViewName("index");
+        return view;
+    }
+
     @PostMapping(value = "/products")
     public Page<ProductDto> products(@RequestBody ProductDto dto) {
         return productService.getProductList(dto);

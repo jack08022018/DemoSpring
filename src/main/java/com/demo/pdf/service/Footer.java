@@ -7,6 +7,7 @@ import com.itextpdf.kernel.colors.DeviceRgb;
 import com.itextpdf.kernel.events.Event;
 import com.itextpdf.kernel.events.IEventHandler;
 import com.itextpdf.kernel.events.PdfDocumentEvent;
+import com.itextpdf.kernel.font.PdfFont;
 import com.itextpdf.kernel.geom.Rectangle;
 import com.itextpdf.kernel.pdf.PdfPage;
 import com.itextpdf.kernel.pdf.canvas.PdfCanvas;
@@ -15,6 +16,7 @@ import com.itextpdf.layout.Document;
 import com.itextpdf.layout.borders.SolidBorder;
 import com.itextpdf.layout.element.Paragraph;
 import com.itextpdf.layout.property.BorderRadius;
+import com.itextpdf.layout.property.HorizontalAlignment;
 import com.itextpdf.layout.property.TextAlignment;
 import com.itextpdf.layout.property.VerticalAlignment;
 
@@ -45,8 +47,8 @@ public class Footer implements IEventHandler {
                 "padding: 0 3 0 3;" +
                 "'>10201141</span>";
         canvas.showTextAligned((Paragraph) PdfCommonUtils.getElementFromHtml(number, converterFont),
-                pageSize.getRight() - 48,
-                pageSize.getBottom() + 9,
+                pageSize.getRight() - 66,
+                pageSize.getBottom() + 13,
                 TextAlignment.RIGHT);
         canvas.close();
     }
@@ -55,25 +57,39 @@ public class Footer implements IEventHandler {
         Rectangle pageSize = doc.getPdfDocument().getDefaultPageSize();
         int totalPage = doc.getPdfDocument().getNumberOfPages();
         for (int i = 1; i <= totalPage; i++) {
-            String html = "<span style='" +
-                    "font: 14px verdana;" +
-                    "border-radius: 4px;" +
-                    "padding: 2px;" +
-                    "background: red; color: white;" +
-                    "'>" + i + "/" + totalPage + "</span>";
-            Paragraph number = new Paragraph(i + "");
-            number.setBorder(new SolidBorder(1));
+            Paragraph number = new Paragraph(i + "/" + totalPage);
+            number.setBorder(new SolidBorder(0));
             number.setBorderRadius(new BorderRadius(4));
-            number.setWidth(15);
-            number.setPadding(4);
-            number.setBackgroundColor(new DeviceRgb(250, 210, 73));
+//            number.setWidth(10);
+            number.setMaxWidth(32);
+            number.setPadding(2);
+//            number.setPaddingLeft(5);
+//            number.setHorizontalAlignment(HorizontalAlignment.RIGHT);
+            number.setKeepTogether(true);
+            number.setBackgroundColor(new DeviceRgb(255, 0, 0));
+            number.setFontColor(DeviceRgb.WHITE);
             doc.showTextAligned(number,
                     pageSize.getRight() - 46,
                     pageSize.getBottom() + 30,
                     i,
-                    TextAlignment.LEFT,
+                    TextAlignment.CENTER,
                     VerticalAlignment.TOP,
                     0);
+        }
+    }
+    public static void addPagingToFooter1(Document document, ConverterProperties converterFont) {
+        Rectangle pageSize = document.getPdfDocument().getDefaultPageSize();
+        int totalPage = document.getPdfDocument().getNumberOfPages();
+        for (int i = 1; i <= totalPage; i++) {
+            String html = "<div style='"
+                    + "display: inline-block;"
+                    + "font: 14px verdana;"
+                    + "border-radius: 4px;"
+                    + "padding: 2px;"
+                    + "background: red; color: white;"
+                    + "'>" + i + "/" + totalPage + "</div>";
+            document.showTextAligned(((Paragraph) PdfCommonUtils.getElementFromHtml(html, converterFont)),
+                    pageSize.getRight() - 46, pageSize.getBottom() + 25, i, TextAlignment.LEFT, VerticalAlignment.TOP, 0);
         }
     }
 }
