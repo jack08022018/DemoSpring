@@ -32,10 +32,10 @@ public class PDFGenerator {
         try {
             document.setMargins(40, 30, 40, 30);
             document.add(new Paragraph("\n\n\n"));
-            for (int i = 0; i < 20; i++) {
+            for (int i = 0; i < 5; i++) {
                 PdfService.buildPart_A(document, converterFont);
                 PdfService.buildCaution(document, converterFont);
-//                PdfService.buildPart_B(document, converterFont);
+                PdfService.buildPart_B(document, converterFont);
 //                PdfService.buildPart_C(document, converterFont);
 //                PdfService.buildPart_D(document, converterFont);
 //                PdfService.buildPart_E(document, converterFont);

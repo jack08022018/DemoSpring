@@ -33,6 +33,7 @@ Ext.define('ext.View', {
 			style: 'float : right;',
 			handler: function() {
 				products();
+				// getSignature();
 			}
 		});
 
@@ -353,6 +354,20 @@ Ext.define('ext.View', {
 			form.submit({
 				target: '_blank',
 			});
+		}
+
+		function getSignature() {
+			let body = {
+				"amount":37400000,
+				"payment_reference_id":"NEW202108250000",
+			};
+			body = JSON.stringify(body);
+			console.log(body)
+//			body = '{"request_id":"e7271533-898d-46a9-bef6-e12b12f4bba3","amount":5000000,"currency":"VND","merchant_ext_id":"Pru_012345","store_ext_id":"Pru_01","payment_reference_id":"NEW202108250001"}';
+// 			body = body.replaceAll('"', '\\"');
+			let hash = CryptoJS.HmacSHA256(body, '1912010b01904df08e47dc6e2907df2f')
+			let sig = CryptoJS.enc.Base64.stringify(hash).replace(/\n+$/, '')
+			console.log(sig)
 		}
 
 //		END

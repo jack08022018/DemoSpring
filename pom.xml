@@ -106,7 +106,13 @@
 			<artifactId>itext-pdfa</artifactId>
 			<version>5.5.13.2</version>
 		</dependency>
-		<!--end itextpdf-->
+        <dependency>
+            <groupId>org.jetbrains</groupId>
+            <artifactId>annotations</artifactId>
+            <version>RELEASE</version>
+            <scope>compile</scope>
+        </dependency>
+        <!--end itextpdf-->
 
 	</dependencies>
 
