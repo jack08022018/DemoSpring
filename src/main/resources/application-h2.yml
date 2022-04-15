@@ -11,10 +11,10 @@ spring:
   main:
     allow-bean-definition-overriding: true
   jpa:
-#    hibernate:
-#      ddl-auto: update
+    database: default
+    database-platform: org.hibernate.dialect.H2Dialect
+    show-sql: true
     # The SQL dialect makes Hibernate generate better SQL for the chosen database
-    properties.hibernate.dialect: org.hibernate.dialect.MySQL5InnoDBDialect
   thymeleaf:
     cache: false
     check-template-location: true
@@ -23,8 +23,12 @@ spring:
     suffix: .html
     template-resolver-order: 1
   datasource:
-    url: jdbc:mysql://localhost:3306/myDB
-    username: root
-    password: 123456
+    url: jdbc:h2:mem:testdb
+    driver-class-name: org.h2.Driver
+    username: sa
+    password:
+  h2:
+    console:
+      enabled: true
   jackson:
     default-property-inclusion: non_absent

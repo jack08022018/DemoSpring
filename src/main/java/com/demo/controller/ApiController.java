@@ -2,6 +2,7 @@ package com.demo.controller;
 
 
 import com.demo.dto.ProductDto;
+import com.demo.dto.UsersEntity;
 import com.demo.pdf.PDFGenerator;
 import com.demo.service.ProductService;
 import com.fasterxml.jackson.core.JsonProcessingException;
@@ -18,6 +19,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 import java.io.ByteArrayInputStream;
+import java.util.List;
 
 @RestController
 @RequestMapping(value = "/api")
@@ -43,6 +45,11 @@ public class ApiController {
     @PostMapping(value = "/products")
     public Page<ProductDto> products(@RequestBody ProductDto dto) {
         return productService.getProductList(dto);
+    }
+
+    @PostMapping(value = "/users")
+    public List<UsersEntity> users() {
+        return productService.getUsers();
     }
 
     @PostMapping("/getProductData")
